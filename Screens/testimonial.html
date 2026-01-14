@@ -97,6 +97,44 @@
             width: 100%;
         }
 
+        .talk-btn {
+            padding: 14px 32px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: absolute;
+            right: 60px;
+            text-decoration: none;
+        }
+
+        .talk-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 3px;
+            background: #000;
+            border-radius: 2px;
+        }
+
         /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
@@ -326,12 +364,13 @@
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             nav {
                 padding: 20px 30px;
             }
 
             .logo-section {
+                flex: 1;
                 left: 30px;
             }
 
@@ -345,6 +384,8 @@
                 padding: 30px;
                 box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
                 transition: left 0.3s ease;
+                gap: 20px;
+                height: auto;
             }
 
             .nav-menu.active {
@@ -353,6 +394,14 @@
 
             .menu-toggle {
                 display: flex;
+            }
+
+            .menu-toggle span {
+                width: 25px;
+                height: 3px;
+                background: #000;
+                border-radius: 2px;
+                transition: all 0.3s ease;
             }
 
             .testimonial-section {

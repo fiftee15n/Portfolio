@@ -92,24 +92,42 @@
             width: 100%;
         }
 
-        .contact-btn {
-            padding: 12px 30px;
+        .talk-btn {
+            padding: 14px 32px;
             background: #000000;
             color: #ffffff;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: absolute;
+            right: 60px;
             text-decoration: none;
-            display: inline-block;
         }
 
-        .contact-btn:hover {
+        .talk-btn:hover {
             background: #333333;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 3px;
+            background: #000;
+            border-radius: 2px;
         }
 
         /* Hero Section */
@@ -372,9 +390,14 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             nav {
                 padding: 20px 30px;
+            }
+
+            .logo-section {
+                flex: 1;
+                left: 30px;
             }
 
             .nav-menu {
@@ -387,6 +410,8 @@
                 padding: 30px;
                 box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
                 transition: left 0.3s ease;
+                gap: 20px;
+                height: auto;
             }
 
             .nav-menu.active {
@@ -395,6 +420,14 @@
 
             .menu-toggle {
                 display: flex;
+            }
+
+            .menu-toggle span {
+                width: 25px;
+                height: 3px;
+                background: #000;
+                border-radius: 2px;
+                transition: all 0.3s ease;
             }
 
             .hero {
@@ -444,17 +477,48 @@
             }
 
             .profile-container {
-                width: 250px;
-                height: 250px;
+                width: 280px;
+                height: 280px;
             }
 
             .profile-circle {
-                width: 220px;
-                height: 220px;
+                width: 240px;
+                height: 240px;
             }
 
-            .badge1, .badge3, .badge5 {
-                display: none;
+            .skill-badge {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+
+            .skill-icon {
+                font-size: 16px;
+            }
+
+            /* Adjust badge positions for mobile */
+            .badge1 {
+                top: 5%;
+                left: 8%;
+            }
+
+            .badge2 {
+                top: 3%;
+                right: 10%;
+            }
+
+            .badge3 {
+                top: 50%;
+                left: 2%;
+            }
+
+            .badge4 {
+                bottom: 8%;
+                right: 8%;
+            }
+
+            .badge5 {
+                bottom: 12%;
+                left: 5%;
             }
         }
     </style>
