@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopFlow - Case Study | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 60px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #000000;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .figma-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .figma-btn:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-color: #000000;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: #ffffff;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #666666;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .overview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .overview h2 {
+            font-size: 2em;
+            color: #000000;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .overview-item {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 3px solid #000000;
+        }
+
+        .overview-item h3 {
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .overview-item p {
+            color: #666666;
+            font-size: 0.95em;
+        }
+
+        .section {
+            padding: 60px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            color: #000000;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            color: #333333;
+            margin: 50px 0 20px 0;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .section-description {
+            color: #666666;
+            font-size: 1.05em;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1400px;
+            justify-content: center;
+        }
+
+        .image-grid .image-item {
+            flex: 0 0 calc(33.333% - 20px);
+            max-width: 450px;
+        }
+
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            justify-content: center;
+        }
+
+        .two-column .image-item {
+            flex: 0 0 calc(50% - 15px);
+            max-width: 550px;
+        }
+
+        .three-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1400px;
+            justify-content: center;
+        }
+
+        .three-column .image-item {
+            flex: 0 0 calc(33.333% - 20px);
+            max-width: 450px;
+        }
+
+        .image-item {
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            color: #333333;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .single-image {
+            max-width: 900px;
+            margin: 30px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .single-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .single-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .single-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 50px 0;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.8); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 45px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 1.1em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .two-column, .three-column, .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .overview {
+                padding: 30px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .close {
+                top: 15px;
+                right: 15px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal for full-screen image viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <a href="projects.html" class="back-btn">← Back to Projects</a>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>ShopFlow</h1>
+            <p class="subtitle">An intuitive online store builder platform that empowers businesses to create, customize, and manage their e-commerce presence with ease. Features drag-and-drop design, product management, sales analytics, and comprehensive storefront customization.</p>
+            <a href="https://www.figma.com/design/6ezfkilfufJ4hfCpWYhpdr/Untitled?node-id=0-1&t=KL4GbkLbrW4s5DJB-1" target="_blank" class="figma-btn">View Figma Design</a>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="overview">
+            <h2>Project Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>Role</h3>
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Timeline</h3>
+                    <p>3 Months Design</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Platform</h3>
+                    <p>Web Application</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Tools Used</h3>
+                    <p>Figma, Adobe XD</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Landing Page -->
+        <div class="section">
+            <h2>Landing Page</h2>
+            <p class="section-description">
+                A modern and inviting landing page that showcases ShopFlow's key features and benefits. The design emphasizes ease of use, powerful features, and the ability to launch an online store quickly without technical expertise.
+            </p>
+            <div class="single-image">
+                <img src="../Images/ShopFlow/Landing Page (1).png" alt="ShopFlow Landing Page">
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Authentication -->
+        <div class="section">
+            <h2>User Authentication</h2>
+            <p class="section-description">
+                Streamlined sign-in process with a clean, professional interface. The authentication flow ensures security while maintaining a user-friendly experience for store owners accessing their dashboard.
+            </p>
+            <div class="two-column">
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sign In.png" alt="Sign In">
+                    <div class="image-caption">Sign In Page</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Onboarding - Input Store Name.png" alt="Store Name Input">
+                    <div class="image-caption">Onboarding - Store Setup</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Dashboard -->
+        <div class="section">
+            <h2>Sales Dashboard</h2>
+            <p class="section-description">
+                A comprehensive dashboard providing real-time insights into sales performance, revenue trends, order statistics, and key business metrics. Designed for quick decision-making with intuitive data visualization.
+            </p>
+            <div class="single-image">
+                <img src="../Images/ShopFlow/Sale Dashboard.png" alt="Sales Dashboard">
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Analytics -->
+        <div class="section">
+            <h2>Sales Analytics</h2>
+            <p class="section-description">
+                Detailed analytics and reporting tools that help store owners understand their business performance, track customer behavior, and identify growth opportunities through comprehensive data analysis.
+            </p>
+            <div class="single-image">
+                <img src="../Images/ShopFlow/Sale Analytics.png" alt="Sales Analytics">
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Product Management -->
+        <div class="section">
+            <h2>Product Management</h2>
+            <p class="section-description">
+                Efficient product management system allowing store owners to add, edit, and organize their product catalog. Features include bulk actions, search, filters, and detailed product information management.
+            </p>
+            <div class="two-column">
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Data Table - Product List.png" alt="Product List">
+                    <div class="image-caption">Product List Table</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Create a Product.png" alt="Create Product">
+                    <div class="image-caption">Create New Product</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Sales Channel Customization -->
+        <div class="section">
+            <h2>Sales Channel Customization</h2>
+            <p class="section-description">
+                Powerful storefront customization tools with theme selection, section management, and element editing capabilities. Store owners can create unique, branded shopping experiences without coding.
+            </p>
+            
+            <h3>Theme & Layout</h3>
+            <div class="three-column">
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Edit Sale Channel - Select Theme.png" alt="Select Theme">
+                    <div class="image-caption">Theme Selection</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Edit Sale Channel - Sections.png" alt="Edit Sections">
+                    <div class="image-caption">Section Editor</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Edit Sale Channel - Elements.png" alt="Edit Elements">
+                    <div class="image-caption">Element Customization</div>
+                </div>
+            </div>
+
+            <h3>Page Management</h3>
+            <div class="three-column">
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sale Channel - Page List.png" alt="Page List">
+                    <div class="image-caption">Page List</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sale Channel - Page Details.png" alt="Page Details">
+                    <div class="image-caption">Page Details</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sales Channel - Search & Filters.png" alt="Search & Filters">
+                    <div class="image-caption">Search & Filter Options</div>
+                </div>
+            </div>
+
+            <h3>Navigation Setup</h3>
+            <div class="two-column">
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sales Channel - Navigation List.png" alt="Navigation List">
+                    <div class="image-caption">Navigation Menu List</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/ShopFlow/Sales Channel - Navigation Details.png" alt="Navigation Details">
+                    <div class="image-caption">Navigation Menu Details</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Design Features -->
+        <div class="overview">
+            <h2>Design Philosophy</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>Intuitive Interface</h3>
+                    <p>User-friendly design ensuring even non-technical users can build professional stores.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Data-Driven Insights</h3>
+                    <p>Comprehensive analytics and reporting for informed business decisions.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Flexible Customization</h3>
+                    <p>Powerful customization tools for creating unique branded experiences.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Streamlined Workflow</h3>
+                    <p>Optimized processes for managing products, orders, and storefront efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality for image viewing
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        // Add click event to all images
+        document.addEventListener('DOMContentLoaded', function() {
+            const allImages = document.querySelectorAll('.image-item img, .single-image img');
+            
+            allImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    
+                    // Get caption from image caption or alt text
+                    const captionEl = this.parentElement.querySelector('.image-caption');
+                    if (captionEl) {
+                        modalCaption.textContent = captionEl.textContent;
+                    } else {
+                        modalCaption.textContent = this.alt || 'ShopFlow Screenshot';
+                    }
+                    
+                    // Prevent body scroll when modal is open
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+        });
+        
+        // Close modal function
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target === modalImg) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+        
+        // Smooth scroll for better navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

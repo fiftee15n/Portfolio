@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawsome - Case Study | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 60px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #000000;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: #ffffff;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #666666;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .figma-btn {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            padding: 14px 35px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .figma-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .overview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .overview h2 {
+            font-size: 2em;
+            color: #000000;
+            margin-bottom: 30px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .overview-item h3 {
+            font-size: 0.9em;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .overview-item p {
+            font-size: 1.1em;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            color: #000000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-description {
+            font-size: 1.1em;
+            color: #666666;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
+            gap: 30px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .screen-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .screen-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .screen-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screen-caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .screen-caption h3 {
+            font-size: 1.1em;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #000000;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666666;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: #000000;
+            color: #ffffff;
+            border-radius: 12px;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 16px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            .screens-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="projects.html" class="back-btn">← Back to Projects</a>
+
+    <div class="container">
+        <div class="header">
+            <h1>Pawsome</h1>
+            <p class="subtitle">
+                A comprehensive UI/UX design for a pet care and services platform, featuring intuitive navigation 
+                and engaging user experience for pet lovers. From adoption to foster care, shopping to veterinary services.
+            </p>
+            <a href="#" class="figma-btn">View on Figma</a>
+        </div>
+
+        <div class="overview">
+            <h2>Project Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>Role</h3>
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Timeline</h3>
+                    <p>6 Weeks (2022)</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Tools</h3>
+                    <p>Adobe XD, Figma</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Platform</h3>
+                    <p>Mobile App (iOS & Android)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../Images/pawsome/486023415_1823914211717799_56525180197464588_n.jpg" alt="Pawsome Hero">
+        </div>
+
+        <!-- Key Features -->
+        <div class="section">
+            <h2>Key Features</h2>
+            <p class="section-description">
+                Pawsome offers a complete ecosystem for pet care, connecting pet owners with services, products, 
+                and community support in one seamless platform.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🐾 Pet Adoption</h3>
+                    <p>Browse and adopt pets from shelters and rescue organizations with detailed profiles and matching algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏠 Foster Program</h3>
+                    <p>Temporary foster care system with tracking, updates, and seamless communication between fosters and organizations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛒 Pet Shopping</h3>
+                    <p>Complete e-commerce solution for pet supplies, food, toys, and accessories with easy checkout.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💳 Secure Payments</h3>
+                    <p>Multiple payment options with secure processing for donations, adoptions, and purchases.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👤 User Profiles</h3>
+                    <p>Personalized profiles for pet owners with pet management, order history, and preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📧 Smart Notifications</h3>
+                    <p>Stay updated with adoption updates, foster care alerts, order tracking, and community news.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Screens -->
+        <div class="section">
+            <h2>Splash Screens & Navigation</h2>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/photo_2026-01-15_00-51-52.jpg" alt="Screen 1">
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/photo_2026-01-15_00-52-16.jpg" alt="Screen 2">
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/photo_2026-01-15_00-52-53.jpg" alt="Screen 3">
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/photo_2026-01-15_00-52-59.jpg" alt="Screen 4">
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/photo_2026-01-15_00-53-02.jpg" alt="Screen 5">
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication Flow -->
+        <div class="section">
+            <h2>Authentication & Onboarding</h2>
+            <p class="section-description">
+                Seamless user authentication flow with social login options and secure password management.
+            </p>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/login.jpg" alt="Login Screen">
+                    <div class="screen-caption">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/signup.jpg" alt="Signup Screen">
+                    <div class="screen-caption">
+                        <h3>Sign Up</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/otp.jpg" alt="OTP Verification">
+                    <div class="screen-caption">
+                        <h3>OTP Verification</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/resetpassword.jpg" alt="Reset Password">
+                    <div class="screen-caption">
+                        <h3>Reset Password</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/newpassword.jpg" alt="New Password">
+                    <div class="screen-caption">
+                        <h3>New Password</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/successful.jpg" alt="Success Message">
+                    <div class="screen-caption">
+                        <h3>Success</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="section">
+            <h2>Navigation & Menu</h2>
+            <p class="section-description">
+                Intuitive navigation system with easy access to all features and personalized user settings.
+            </p>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/menu.jpg" alt="Main Menu">
+                    <div class="screen-caption">
+                        <h3>Main Menu</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/profile.jpg" alt="User Profile">
+                    <div class="screen-caption">
+                        <h3>User Profile</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/settings.jpg" alt="Settings">
+                    <div class="screen-caption">
+                        <h3>Settings</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adoption & Foster Care -->
+        <div class="section">
+            <h2>Adoption & Foster Care</h2>
+            <p class="section-description">
+                Comprehensive adoption and foster care system with detailed pet profiles and tracking.
+            </p>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/Adopt.jpg" alt="Adoption Screen">
+                    <div class="screen-caption">
+                        <h3>Adopt a Pet</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/fosterdetails.jpg" alt="Foster Details">
+                    <div class="screen-caption">
+                        <h3>Foster Details</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/Fosterupdate.jpg" alt="Foster Updates">
+                    <div class="screen-caption">
+                        <h3>Foster Updates</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping Experience -->
+        <div class="section">
+            <h2>Shopping & Checkout</h2>
+            <p class="section-description">
+                Complete e-commerce experience with cart management, multiple payment options, and order tracking.
+            </p>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/ordercart.jpg" alt="Shopping Cart">
+                    <div class="screen-caption">
+                        <h3>Shopping Cart</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/checkout.jpg" alt="Checkout">
+                    <div class="screen-caption">
+                        <h3>Checkout</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/address.jpg" alt="Address">
+                    <div class="screen-caption">
+                        <h3>Delivery Address</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/payent option.jpg" alt="Payment Options">
+                    <div class="screen-caption">
+                        <h3>Payment Options</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/payment.jpg" alt="Payment">
+                    <div class="screen-caption">
+                        <h3>Payment Processing</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication -->
+        <div class="section">
+            <h2>Communication & Notifications</h2>
+            <p class="section-description">
+                Stay connected with inbox messaging and smart notifications for all your pet care needs.
+            </p>
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <img src="../Images/pawsome/inbx.jpg" alt="Inbox">
+                    <div class="screen-caption">
+                        <h3>Inbox</h3>
+                    </div>
+                </div>
+                <div class="screen-item">
+                    <img src="../Images/pawsome/Notification.jpg" alt="Notifications">
+                    <div class="screen-caption">
+                        <h3>Notifications</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Interested in Working Together?</h2>
+            <p>Let's create something amazing for your next project</p>
+            <a href="../contact.html" class="cta-btn">Get in Touch</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Jahangir Alam Tamal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 60px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            left: 60px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a:hover {
+            color: #000000;
+        }
+
+        .nav-menu a.active {
+            color: #000000;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            padding: 12px 30px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            position: absolute;
+            right: 30px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-top: 100px;
+            padding: 60px 60px 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-label {
+            color: #666666;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #555555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: #ffffff;
+            color: #333333;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #000000;
+            color: #000000;
+        }
+
+        .filter-btn.active {
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #cccccc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #000000;
+            color: #ffffff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            font-size: 15px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            padding: 5px 12px;
+            background: #f5f5f5;
+            color: #333333;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-link {
+            color: #000000;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+        }
+
+        .project-link::after {
+            content: '→';
+            font-size: 18px;
+        }
+
+        .project-date {
+            font-size: 13px;
+            color: #999999;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .category-icon {
+            font-size: 40px;
+        }
+
+        .category-info h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .category-info p {
+            font-size: 15px;
+            color: #666666;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px;
+            border-radius: 20px;
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: #ffffff;
+                width: 100%;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .projects-section {
+                padding: 40px 30px 60px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .category-info h2 {
+                font-size: 26px;
+            }
+
+            .stats-section {
+                padding: 40px 30px;
+                gap: 30px;
+            }
+
+            .stat-item h3 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 28px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="homepage.html" class="logo-section">
+            <img src="../Images/logo/Jahangir Alam Tamal (1).png" alt="Logo" class="nav-logo">
+            <span class="nav-name">Jahangir Alam Tamal</span>
+        </a>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="design.html">Designs</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <!-- Section Header -->
+        <div class="section-header">
+            <p class="section-label">Portfolio</p>
+            <h1 class="section-title">Featured Projects</h1>
+            <p class="section-description">
+                A showcase of my recent work across web development, mobile applications,
+                UI/UX design, and creative projects. Each project represents a unique challenge and solution.
+            </p>
+        </div>
+
+        <!-- All Projects Grid -->
+        <div class="projects-grid">
+            <!-- NSA DIU Website -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/NSADIU/nsaweb.png" alt="NSA DIU Website">
+                    <div class="project-category">Web Dev & Design</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">NSA DIU Website</h3>
+                    <p class="project-description">
+                        Full-stack web design and development for a student association website, 
+                        featuring event management, member portal, and dynamic content administration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Web Design</span>
+                        <span class="project-tag">Web Development</span>
+                        <span class="project-tag">Full-Stack</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://nsadiu.github.io/Narayanganj-Student-Association/welcome.html" target="_blank" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HR Magnet -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/Hr-management/l.png" alt="HR Magnet">
+                    <div class="project-category">Web Design</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">HR Magnet</h3>
+                    <p class="project-description">
+                        A modern HR management website UI design streamlining employee management, 
+                        recruitment, performance tracking, and time management with Figma.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">Web Design</span>
+                        <span class="project-tag">UI/UX</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="hr_magnet.html" class="project-link demo-btn">View Project</a>
+                        <span class="project-date">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ShopFlow -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/ShopFlow/2342.png" alt="ShopFlow">
+                    <div class="project-category">Web Design</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">ShopFlow</h3>
+                    <p class="project-description">
+                        An intuitive online store builder platform with drag-and-drop functionality, 
+                        enabling businesses to create and manage their e-commerce presence effortlessly.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">E-commerce</span>
+                        <span class="project-tag">Web Design</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="shopflow.html" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donoro -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/donoro/Donoro.jpg" alt="Donoro">
+                    <div class="project-category">Frontend & UI/UX</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Donoro</h3>
+                    <p class="project-description">
+                        A comprehensive donation management platform featuring frontend development, 
+                        UI/UX design, and complete system architecture for seamless donor experiences.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Frontend</span>
+                        <span class="project-tag">UI/UX</span>
+                        <span class="project-tag">System Design</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="donoro.html" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Petsarology -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/petsarology/photo_2026-01-13_05-05-36.jpg" alt="Petsarology">
+                    <div class="project-category">Web Dev</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Petsarology</h3>
+                    <p class="project-description">
+                        An astrology and personality insights platform for pets, providing 
+                        horoscopes, compatibility analysis, and personalized pet care recommendations.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Laravel</span>
+                        <span class="project-tag">PHP</span>
+                        <span class="project-tag">MySQL</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="pet_webapp.html" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2025</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Bazar Sadai UI/UX Design -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/Bazar Sadaai/490825004_1842159239893296_5264870178247861639_n.jpg" alt="Bazar Sadai UI Design">
+                    <div class="project-category">UI/UX</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Bazar Sadai UI Design</h3>
+                    <p class="project-description">
+                        Modern and user-friendly interface design for an online marketplace, 
+                        focusing on seamless shopping experience and visual appeal.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">Wireframing</span>
+                        <span class="project-tag">Design System</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="bazar_sadaai.html" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pawsome UI/UX Design -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="../Images/pawsome/486023415_1823914211717799_56525180197464588_n.jpg" alt="Pawsome">
+                    <div class="project-category">UI/UX</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Pawsome</h3>
+                    <p class="project-description">
+                        A comprehensive UI/UX design for a pet care and services platform, 
+                        featuring intuitive navigation and engaging user experience for pet lovers.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Adobe XD</span>
+                        <span class="project-tag">Prototyping</span>
+                        <span class="project-tag">User Research</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="pawsome.html" class="project-link demo-btn">View Demo</a>
+                        <span class="project-date">2022</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h3>30+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>4+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Technologies</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

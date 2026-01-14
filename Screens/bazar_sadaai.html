@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazar Sadaai - Case Study | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 60px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #000000;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: #ffffff;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #666666;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .overview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .overview h2 {
+            font-size: 2em;
+            color: #000000;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .overview-item {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 3px solid #000000;
+        }
+
+        .overview-item h3 {
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .overview-item p {
+            color: #666666;
+            font-size: 0.95em;
+        }
+
+        .section {
+            padding: 60px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            color: #000000;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            color: #333333;
+            margin: 50px 0 20px 0;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .section-description {
+            color: #666666;
+            font-size: 1.05em;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1400px;
+            justify-content: center;
+        }
+
+        .image-grid .image-item {
+            flex: 0 0 calc(33.333% - 20px);
+            max-width: 240px;
+        }
+
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            justify-content: center;
+        }
+
+        .two-column .image-item {
+            flex: 0 0 calc(50% - 15px);
+            max-width: 280px;
+        }
+
+        .three-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1400px;
+            justify-content: center;
+        }
+
+        .three-column .image-item {
+            flex: 0 0 calc(33.333% - 20px);
+            max-width: 240px;
+        }
+
+        .image-item {
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            width: 100%;
+            max-width: 240px;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            color: #333333;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .single-image {
+            max-width: 350px;
+            margin: 30px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .single-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .single-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .single-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 50px 0;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.8); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 45px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 1.1em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .two-column, .three-column, .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .overview {
+                padding: 30px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .close {
+                top: 15px;
+                right: 15px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal for full-screen image viewing -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <a href="projects.html" class="back-btn">← Back to Projects</a>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🛒 Bazar Sadaai</h1>
+            <p class="subtitle">A comprehensive online marketplace mobile app connecting buyers with fresh produce and grocery sellers. Features secure authentication, seamless checkout, real-time order tracking, and personalized user experience.</p>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="overview">
+            <h2>Project Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>Role</h3>
+                    <p>UI/UX Designer & Mobile Developer</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Timeline</h3>
+                    <p>4 Months Development</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Platform</h3>
+                    <p>iOS & Android Mobile App</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Tools Used</h3>
+                    <p>Flutter, Dart, Firebase</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Launch & Onboarding -->
+        <div class="section">
+            <h2>Launch & Onboarding</h2>
+            <p class="section-description">
+                Engaging launch screen and user awareness onboarding that introduces new users to the marketplace features, helping them understand how to browse, purchase, and track their grocery orders.
+            </p>
+            <div class="two-column">
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Launch Screen-1.png" alt="Launch Screen">
+                    <div class="image-caption">Launch Screen</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Onboarding - User Awareness.png" alt="Onboarding">
+                    <div class="image-caption">User Onboarding</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Authentication -->
+        <div class="section">
+            <h2>Secure Authentication</h2>
+            <p class="section-description">
+                Comprehensive authentication system with email sign-up, email verification, and secure login. The interface prioritizes security while maintaining a smooth and intuitive user experience.
+            </p>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Sign Up.png" alt="Sign Up">
+                    <div class="image-caption">Sign Up Screen</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Sign up with Email.png" alt="Email Sign Up">
+                    <div class="image-caption">Email Sign Up</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Sign up with Email - Verify Email.png" alt="Verify Email">
+                    <div class="image-caption">Email Verification</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/SecureAccess - Login Screen.png" alt="Login">
+                    <div class="image-caption">Secure Login</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Sign in with Email.png" alt="Email Sign In">
+                    <div class="image-caption">Email Sign In</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Home & Product Browsing -->
+        <div class="section">
+            <h2>Home & Product Browsing</h2>
+            <p class="section-description">
+                Intuitive home screen featuring product listings, vegetable statistics, and easy navigation to browse through fresh produce and grocery items with detailed product information.
+            </p>
+            <div class="three-column">
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Home - Product Listing.png" alt="Product Listing">
+                    <div class="image-caption">Product Listing</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Product Details 1.png" alt="Product Details">
+                    <div class="image-caption">Product Details</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/GreenStats - Vegetable Statistics.png" alt="Vegetable Stats">
+                    <div class="image-caption">Vegetable Statistics</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Checkout Process -->
+        <div class="section">
+            <h2>Seamless Checkout</h2>
+            <p class="section-description">
+                A streamlined multi-step checkout process guiding users from cart to payment success. Includes delivery details, multiple delivery options, order review, and various payment methods.
+            </p>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Cart.png" alt="Shopping Cart">
+                    <div class="image-caption">Shopping Cart</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Delivery Details.png" alt="Delivery Details">
+                    <div class="image-caption">Delivery Details</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Delivery Options.png" alt="Delivery Options">
+                    <div class="image-caption">Delivery Options</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Order Review.png" alt="Order Review">
+                    <div class="image-caption">Order Review</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Payment Method.png" alt="Payment Method">
+                    <div class="image-caption">Payment Method</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Checkout - Payment Success.png" alt="Payment Success">
+                    <div class="image-caption">Payment Success</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Account Management -->
+        <div class="section">
+            <h2>Account Management</h2>
+            <p class="section-description">
+                Comprehensive account settings allowing users to manage their profile, payment methods, preferences, and access help and support whenever needed.
+            </p>
+            <div class="three-column">
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Account Settings.png" alt="Account Settings">
+                    <div class="image-caption">Account Settings</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Payment Method Settings.png" alt="Payment Settings">
+                    <div class="image-caption">Payment Method Settings</div>
+                </div>
+                <div class="image-item">
+                    <img src="../Images/Bazar Sadaai/Help & Support.png" alt="Help & Support">
+                    <div class="image-caption">Help & Support</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Design Features -->
+        <div class="overview">
+            <h2>Design Philosophy</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Clean, intuitive design making grocery shopping effortless for all users.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Secure Transactions</h3>
+                    <p>Multi-layered security ensuring safe and trusted shopping experience.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Seamless Flow</h3>
+                    <p>Streamlined checkout process from browsing to payment confirmation.</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Fresh Produce Focus</h3>
+                    <p>Specialized features for vegetable and grocery marketplace needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality for image viewing
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        // Add click event to all images
+        document.addEventListener('DOMContentLoaded', function() {
+            const allImages = document.querySelectorAll('.image-item img, .single-image img');
+            
+            allImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    
+                    // Get caption from image caption or alt text
+                    const captionEl = this.parentElement.querySelector('.image-caption');
+                    if (captionEl) {
+                        modalCaption.textContent = captionEl.textContent;
+                    } else {
+                        modalCaption.textContent = this.alt || 'Bazar Sadaai Screenshot';
+                    }
+                    
+                    // Prevent body scroll when modal is open
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+        });
+        
+        // Close modal function
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target === modalImg) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

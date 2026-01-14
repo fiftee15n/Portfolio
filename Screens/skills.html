@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Jahangir Alam Tamal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 60px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            left: 60px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a:hover {
+            color: #000000;
+        }
+
+        .nav-menu a.active {
+            color: #000000;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            padding: 12px 30px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            position: absolute;
+            right: 30px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-top: 100px;
+            padding: 60px 60px 80px;
+            background: #f8f9fa;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Terminal-Inspired Header */
+        .terminal-header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid #e0e0e0;
+        }
+
+        .terminal-top {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 30px;
+            font-family: 'Courier New', monospace;
+            color: #000000;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: typeLine 0.5s ease-out forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.3s; }
+        .terminal-line:nth-child(2) { animation-delay: 0.6s; }
+        .terminal-line:nth-child(3) { animation-delay: 0.9s; }
+        .terminal-line:nth-child(4) { animation-delay: 1.2s; }
+
+        .terminal-prompt {
+            color: #27c93f;
+        }
+
+        .terminal-command {
+            color: #000000;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #000000;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-category {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .skills-category:nth-child(1) { animation-delay: 0.2s; }
+        .skills-category:nth-child(2) { animation-delay: 0.4s; }
+        .skills-category:nth-child(3) { animation-delay: 0.6s; }
+
+        .category-header {
+            background: #ffffff;
+            padding: 0;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        .category-top {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .category-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .category-dot.red { background: #ff5f56; }
+        .category-dot.yellow { background: #ffbd2e; }
+        .category-dot.green { background: #27c93f; }
+
+        .category-title-wrapper {
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .category-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000000;
+            font-family: 'Courier New', monospace;
+        }
+
+        .category-title::before {
+            content: 'class ';
+            color: #666666;
+            font-size: 18px;
+        }
+
+        .category-title::after {
+            content: ' {';
+            color: #000000;
+        }
+
+        .skills-grid {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #000000 0%, #666666 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-color: #000000;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card-top {
+            background: #f0f0f0;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .skill-dot.red { background: #ff5f56; }
+        .skill-dot.yellow { background: #ffbd2e; }
+        .skill-dot.green { background: #27c93f; }
+
+        .skill-content {
+            padding: 25px 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            font-family: 'Courier New', monospace;
+        }
+
+        .skill-level {
+            font-size: 12px;
+            color: #27c93f;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        .skill-description {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .skill-description::before {
+            content: '// ';
+            color: #999999;
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #27c93f 0%, #000000 100%);
+            border-radius: 3px;
+            transition: width 1s ease-out;
+            position: relative;
+        }
+
+        .skill-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Closing Bracket */
+        .category-close {
+            background: #ffffff;
+            padding: 15px 30px;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            font-family: 'Courier New', monospace;
+            color: #000000;
+            font-size: 18px;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typeLine {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: #ffffff;
+                width: 100%;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .skills-section {
+                padding: 40px 30px 60px;
+            }
+
+            .terminal-body {
+                font-size: 14px;
+                padding: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-title-wrapper {
+                padding: 20px;
+            }
+
+            .category-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-icon {
+                font-size: 32px;
+            }
+
+            .skill-content {
+                padding: 20px 15px;
+            }
+
+            .skill-name {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="homepage.html" class="logo-section">
+            <img src="../Images/logo/Jahangir Alam Tamal (1).png" alt="Logo" class="nav-logo">
+            <span class="nav-name">Jahangir Alam Tamal</span>
+        </a>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html" class="active">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="design.html">Designs</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <!-- Terminal Header -->
+        <div class="terminal-header">
+            <div class="terminal-top">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-command"> cat skills.json</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-command">{ "developer": "Software Engineer",</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-command">  "expertise": ["UI/UX Design", "Full Stack Development", "Mobile Apps"],</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-command">  "passion": "Creating amazing user experiences" }<span class="cursor"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Container -->
+        <div class="skills-container">
+            <!-- UI/UX Design -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-top">
+                        <div class="category-dot red"></div>
+                        <div class="category-dot yellow"></div>
+                        <div class="category-dot green"></div>
+                    </div>
+                    <div class="category-title-wrapper">
+                        <h2 class="category-title">UI_UX_Design</h2>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">Figma</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">Advanced UI/UX design, prototyping, and design systems</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">Adobe XD</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">Interactive prototypes and user experience design</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">User Research</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <p class="skill-description">User testing, wireframing, and information architecture</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-close">}</div>
+            </div>
+
+            <!-- Frontend Development -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-top">
+                        <div class="category-dot red"></div>
+                        <div class="category-dot yellow"></div>
+                        <div class="category-dot green"></div>
+                    </div>
+                    <div class="category-title-wrapper">
+                        <h2 class="category-title">Frontend_Development</h2>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">React</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">Modern UI development with React and hooks</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">TypeScript</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">Type-safe JavaScript for scalable applications</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 87%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">HTML/CSS</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">Semantic markup and responsive styling</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <p class="skill-description">ES6+, async programming, and modern JS</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-close">}</div>
+            </div>
+
+            <!-- Backend Development -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-top">
+                        <div class="category-dot red"></div>
+                        <div class="category-dot yellow"></div>
+                        <div class="category-dot green"></div>
+                    </div>
+                    <div class="category-title-wrapper">
+                        <h2 class="category-title">Backend_Development</h2>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">Laravel</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <p class="skill-description">Full-stack web applications with MVC architecture</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">PHP</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <p class="skill-description">Server-side scripting and web development</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 68%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <p class="skill-description">Automation, scripting, and backend development</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-top">
+                            <div class="skill-dot red"></div>
+                            <div class="skill-dot yellow"></div>
+                            <div class="skill-dot green"></div>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-header">
+                                <span class="skill-name">Database</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <p class="skill-description">MySQL, PostgreSQL, MongoDB, and database design</p>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-close">}</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Animate progress bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress-bar');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe skill categories
+        document.querySelectorAll('.skills-category').forEach(category => {
+            observer.observe(category);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

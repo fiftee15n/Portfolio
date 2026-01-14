@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio - UI/UX Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 60px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            left: 60px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a:hover {
+            color: #000000;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            padding: 12px 30px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Project Section */
+        .project-section {
+            margin-bottom: 120px;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .project-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .project-subtitle {
+            font-size: 16px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Showcase Container */
+        .showcase-container {
+            background: linear-gradient(135deg, #f5f1eb 0%, #ebe7e0 100%);
+            border-radius: 24px;
+            padding: 80px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .showcase-container.dark {
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        .showcase-container.dark::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .showcase-grid {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Phone Mockup */
+        .phone-mockup {
+            background: #ffffff;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .phone-screen {
+            width: 280px;
+            height: auto;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+
+        .phone-screen.large {
+            width: 500px;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screen-label {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Screen Group */
+        .screen-group {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .group-label {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Component Cards */
+        .component-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding: 60px;
+            background: #f5f5f5;
+            border-radius: 24px;
+        }
+
+        .component-card {
+            background: #2c3441;
+            border-radius: 24px;
+            padding: 40px 30px 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .component-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .component-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Ice Cream Project - Different Layout */
+        .ice-cream-showcase {
+            background: linear-gradient(135deg, #fef5e7 0%, #f9e8d3 100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .project-title {
+                font-size: 28px;
+            }
+
+            .showcase-container {
+                padding: 50px 30px;
+            }
+
+            .screen-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .phone-screen {
+                width: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .showcase-container {
+                padding: 40px 20px;
+            }
+
+            .phone-screen {
+                width: 200px;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="homepage.html" class="logo-section">
+            <img src="../Images/logo/Jahangir Alam Tamal (1).png" alt="Logo" class="nav-logo">
+            <span class="nav-name">Jahangir Alam Tamal</span>
+        </a>
+        
+        <ul class="nav-menu">
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="design.html">Designs</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1>UI/UX Design Portfolio</h1>
+            <p>A collection of mobile app designs showcasing user interface concepts, wireframes, and visual exploration</p>
+        </header>
+
+        <!-- Cycle App Project -->
+        <section class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">Cycle Shop</h2>
+                <p class="project-subtitle">Mobile Application Design</p>
+            </div>
+
+            <div class="showcase-container dark">
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; position: relative; z-index: 1;">
+                    <!-- Main Design - Larger and Centered -->
+                    <img src="../Design/Cycle/Group 24.png" alt="Cycle App Main Screen" onclick="openLightbox('cycle', 0)" style="max-width: 500px; width: 100%; height: auto; cursor: pointer; border-radius: 30px; box-shadow: 0 50px 100px rgba(59, 130, 246, 0.4), 0 20px 60px rgba(147, 51, 234, 0.3), 0 0 80px rgba(59, 130, 246, 0.2); filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.3));">
+                </div>
+            </div>
+
+            <!-- Components Showcase -->
+            <div class="component-showcase">
+                <div class="component-card">
+                    <img src="../Design/Cycle/Icons.png" alt="App Icons" onclick="openLightbox('cycle', 3)">
+                    <div class="component-title">Icons</div>
+                </div>
+
+                <div class="component-card">
+                    <img src="../Design/Cycle/Tab Bar.png" alt="Tab Bar" onclick="openLightbox('cycle', 4)">
+                    <div class="component-title">Tab Bar</div>
+                </div>
+
+                <div class="component-card">
+                    <img src="../Design/Cycle/Icons (1).png" alt="Additional Icons" onclick="openLightbox('cycle', 5)">
+                    <div class="component-title">Components</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ice Cream App Project -->
+        <section class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">Ice Cream Shop</h2>
+                <p class="project-subtitle">Mobile Application Concept</p>
+            </div>
+
+            <div class="showcase-container ice-cream-showcase">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 60px;">
+                    <!-- Wireframes Row -->
+                    <div class="screen-group">
+                        <div class="group-label">Wireframes</div>
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <img src="../Design/Ice cream/Wireframe 1.png" alt="Ice Cream Wireframe 1" onclick="openLightbox('icecream', 0)">
+                            </div>
+                            <div class="screen-label">Wireframe 1</div>
+                        </div>
+
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <img src="../Design/Ice cream/Wireframe 2.png" alt="Ice Cream Wireframe 2" onclick="openLightbox('icecream', 1)">
+                            </div>
+                            <div class="screen-label">Wireframe 2</div>
+                        </div>
+                    </div>
+
+                    <!-- Final UI Row -->
+                    <div class="screen-group">
+                        <div class="group-label">Final UI</div>
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <img src="../Design/Ice cream/Ice cream 1.png" alt="Ice Cream Final 1" onclick="openLightbox('icecream', 2)">
+                            </div>
+                            <div class="screen-label">Screen 1</div>
+                        </div>
+
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <img src="../Design/Ice cream/ice cream 2.png" alt="Ice Cream Final 2" onclick="openLightbox('icecream', 3)">
+                            </div>
+                            <div class="screen-label">Screen 2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Design Project -->
+        <section class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">Mobile UI Design</h2>
+                <p class="project-subtitle">Interface Concept</p>
+            </div>
+
+            <div class="showcase-container" style="background: linear-gradient(135deg, #e8f9f3 0%, #d4f4e7 100%);">
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; position: relative; z-index: 1;">
+                    <!-- Main Design - Larger and Centered -->
+                    <img src="../Design/DOCTOR/Group 6928.png" alt="Mobile UI Design" onclick="openLightbox('newdesign', 0)" style="max-width: 500px; width: 100%; height: auto; cursor: pointer; border-radius: 24px; box-shadow: 0 30px 80px rgba(0, 217, 128, 0.15), 0 10px 30px rgba(0, 0, 0, 0.08);">
+                </div>
+            </div>
+
+            <!-- Other Screens -->
+            <div style="background: linear-gradient(135deg, #e8f9f3 0%, #d4f4e7 100%); border-radius: 24px; padding: 60px; margin-top: 60px; display: flex; justify-content: center;">
+                <img src="../Design/DOCTOR/Other Screens.png" alt="Other Screens" onclick="openLightbox('newdesign', 1)" style="max-width: 900px; width: 100%; height: auto; cursor: pointer; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);">
+            </div>
+        </section>
+
+        <!-- E-Commerce App Project -->
+        <section class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">E-Commerce App</h2>
+                <p class="project-subtitle">Shopping Application Design</p>
+            </div>
+
+            <div class="showcase-container" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
+                <div style="display: flex; gap: 30px; justify-content: center; align-items: center; flex-wrap: wrap; position: relative; z-index: 1;">
+                    <!-- All Three Screens in One Row -->
+                    <div style="width: 280px; max-width: 100%;">
+                        <img src="../Design/E-COMMERCE/home.png" alt="E-Commerce Home" onclick="openLightbox('ecommerce', 0)" style="width: 100%; height: auto; cursor: pointer; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);">
+                    </div>
+                    <div style="width: 280px; max-width: 100%;">
+                        <img src="../Design/E-COMMERCE/search result.png" alt="Search Results" onclick="openLightbox('ecommerce', 1)" style="width: 100%; height: auto; cursor: pointer; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);">
+                    </div>
+                    <div style="width: 280px; max-width: 100%;">
+                        <img src="../Design/E-COMMERCE/detail.png" alt="Product Detail" onclick="openLightbox('ecommerce', 2)" style="width: 100%; height: auto; cursor: pointer; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation UI Project -->
+        <section class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">Navigation UI Design</h2>
+                <p class="project-subtitle">Interface Components</p>
+            </div>
+
+            <div class="showcase-container" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);">
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; position: relative; z-index: 1;">
+                    <!-- Navigation Design -->
+                    <img src="../Design/NAV/Group 1.png" alt="Navigation UI" onclick="openLightbox('navigation', 0)" style="max-width: 900px; width: 100%; height: auto; cursor: pointer; border-radius: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(0, 0, 0, 0.08);">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Full screen view">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+    </div>
+
+    <script>
+        const imageCollections = {
+            cycle: [
+                '../Design/Cycle/Group 24.png',
+                '../Design/Cycle/Wireframe 1.png',
+                '../Design/Cycle/Wireframe 2.png',
+                '../Design/Cycle/Icons.png',
+                '../Design/Cycle/Tab Bar.png',
+                '../Design/Cycle/Icons (1).png'
+            ],
+            icecream: [
+                '../Design/Ice cream/Wireframe 1.png',
+                '../Design/Ice cream/Wireframe 2.png',
+                '../Design/Ice cream/Ice cream 1.png',
+                '../Design/Ice cream/ice cream 2.png'
+            ],
+            newdesign: [
+                '../Design/DOCTOR/Group 6928.png',
+                '../Design/DOCTOR/Other Screens.png'
+            ],
+            ecommerce: [
+                '../Design/E-COMMERCE/home.png',
+                '../Design/E-COMMERCE/search result.png',
+                '../Design/E-COMMERCE/detail.png'
+            ],
+            navigation: [
+                '../Design/NAV/Group 1.png'
+            ]
+        };
+
+        let currentCollection = [];
+        let currentIndex = 0;
+
+        function openLightbox(collection, index) {
+            currentCollection = imageCollections[collection];
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = currentCollection[currentIndex];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function navigateLightbox(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = currentCollection.length - 1;
+            if (currentIndex >= currentCollection.length) currentIndex = 0;
+            document.getElementById('lightbox-img').src = currentCollection[currentIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+
+        // Close on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+    </script>
+</body>
+</html>

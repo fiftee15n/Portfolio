@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donoro - Under Development | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #000000;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+        }
+
+        .project-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 1.05em;
+            color: #888888;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #000000;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95em;
+            border: 2px solid #000000;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .project-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="projects.html" class="back-btn">← Back to Projects</a>
+
+    <div class="container">
+        <img src="../Images/donoro/Donoro.jpg" alt="Donoro Blood Donation System" class="project-image">
+        <h1>Donoro</h1>
+        <p class="subtitle">Blood Donation Management System</p>
+        <p class="description">
+            This project is currently under development. Stay tuned for updates as we build a comprehensive platform connecting blood donors with those in need.
+        </p>
+        <div class="status-badge">🚧 Under Development</div>
+    </div>
+</body>
+</html>
