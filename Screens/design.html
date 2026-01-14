@@ -123,6 +123,25 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            position: absolute;
+            right: 60px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #000000;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
         /* Main Content */
         .main-content {
             margin-top: 100px;
@@ -358,6 +377,65 @@
             }
         }
 
+        /* Mobile Navigation */
+        @media (max-width: 968px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .logo-section {
+                left: 30px;
+            }
+
+            .nav-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .nav-name {
+                font-size: 18px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: #ffffff;
+                width: 100%;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu a {
+                font-size: 16px;
+                width: 100%;
+                padding: 10px 0;
+                justify-content: center;
+            }
+
+            .nav-menu a::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
         @media (max-width: 480px) {
             .navbar {
                 padding: 15px 20px;
@@ -466,7 +544,7 @@
             <span class="nav-name">Jahangir Alam Tamal</span>
         </a>
         
-        <ul class="nav-menu">
+        <ul class="nav-menu" id="navMenu">
             <li><a href="homepage.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="skills.html">Skills</a></li>
@@ -475,6 +553,12 @@
             <li><a href="testimonial.html">Testimonials</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <!-- Main Content -->
@@ -636,6 +720,22 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Lightbox functionality
         const imageCollections = {
             cycle: [
                 '../Design/Cycle/Group 24.png',
